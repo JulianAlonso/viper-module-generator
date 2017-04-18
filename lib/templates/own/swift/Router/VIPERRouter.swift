@@ -21,3 +21,11 @@ final class VIPERRouter: Router {
 extension VIPERRouter: VIPERNavigationDelegate {
 
 }
+
+
+//Some useful vars
+extension VIPERRouter {
+    fileprivate var navigationController: UINavigationController? {
+        return self.viewController.navigationController  
+    }
+}
