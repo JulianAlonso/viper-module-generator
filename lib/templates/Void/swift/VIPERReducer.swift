@@ -1,0 +1,39 @@
+//
+//  Copyright © 2019 nc43tech. All rights reserved.
+//
+//  Licensed under the Apache License, Version 2.0 (the  License);
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an  AS IS BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+
+import Foundation
+import Kernel
+import Void
+
+enum VIPERState {
+    case loading
+}
+
+extension VIPERState: Equatable {
+
+    static func == (lhs: VIPERState, rhs: VIPERState) -> Bool {
+        switch (lhs, rhs) {
+        case (.loading, .loading): return true
+        }
+    }
+}
+
+final class VIPERReducer: Reducer<VIPERState> {
+
+    init() {
+        super.init(store: Store(initial: .loading))
+    }
+}
