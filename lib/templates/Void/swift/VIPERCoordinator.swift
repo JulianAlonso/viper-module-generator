@@ -14,6 +14,7 @@
 //  limitations under the License.
 //
 
+import AsyncDisplayKit
 import DisplayKit
 import Foundation
 import Kernel
@@ -22,17 +23,29 @@ protocol VIPERCoordinatorDelegate: AnyObject {}
 
 final class VIPERCoordinator: Coordinator<UIViewController> {
 
-    private let viewController: VIPERViewController
+    private let node: VIPERNode
     private let reducer: VIPERReducer
     weak var delegate: VIPERCoordinatorDelegate?
 
-    init(reducer: VIPERReducer, viewController: VIPERViewController) {
+    init(reducer: VIPERReducer, node: VIPERNode) {
         self.reducer = reducer
-        self.viewController = viewController
-        super.init(type: .normal, content: viewController)
+        self.node = node
+        super.init(type: .normal, content: ASViewController(node: node))
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    override func start() {
+        super.start()
+        navigationController?.pushViewController(self, animated: true)
+        reducer.subscribe { [weak self] state in
+        guard let self = self else { return }
+            //Do something...
+        }
+        node.delegate = self
+    }
 }
+
+extension VIPERCoordinator: VIPERViewDelegate {}

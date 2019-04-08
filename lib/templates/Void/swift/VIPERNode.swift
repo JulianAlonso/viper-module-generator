@@ -14,11 +14,18 @@
 //  limitations under the License.
 //
 
-import UIKit
+import AsyncDisplayKit
+import DisplayKit
+import Foundation
 
-final class VIPERViewController: UIViewController {
+protocol VIPERViewDelegate: AnyObject {}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+final class VIPERNode: View {
+
+    weak var delegate: VIPERViewDelegate?
+
+    override func styles() {}
+
+    override func translate() {}
+
 }

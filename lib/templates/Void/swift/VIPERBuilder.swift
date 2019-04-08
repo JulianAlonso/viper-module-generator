@@ -27,8 +27,8 @@ final class VIPERComponent: PluginizedComponent<EmptyDependency, VIPERPluginExte
         return VIPERReducer()
     }
     
-    var viewController: VIPERViewController {
-        return VIPERViewController()
+    var node: VIPERNode {
+        return VIPERNode()
     }
     
 }
@@ -40,6 +40,6 @@ final class VIPERBuilder: Builder<VIPERComponent> {
     func build() -> VIPERCoordinator {
         let component = componentBuilder()
         return VIPERCoordinator(reducer: component.reducer,
-                               viewController: component.viewController)
+                                node: component.node)
     }
 }
